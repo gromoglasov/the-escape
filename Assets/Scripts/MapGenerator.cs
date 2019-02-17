@@ -16,6 +16,10 @@ public class MapGenerator : MonoBehaviour
     public float persistance;
     public float lacunarity;
 
+    public float meshHeightMultiplier;
+
+    public AnimationCurve meshHeightCurve;
+
     public int seed;
     public Vector2 offset;
     public bool autoUpdate;
@@ -40,7 +44,7 @@ public class MapGenerator : MonoBehaviour
         MapDisplay display = FindObjectOfType<MapDisplay>();
         if (drawMode == DrawMode.NoiseMap) display.DrawTexture (TextureGenerator.TextureFromHeightMap(noiseMap));
         else if(drawMode == DrawMode.ColorMap) display.DrawTexture (TextureGenerator.TextureFromColorMap(colorMap, mapWidht, mapHeight));
-        else if(drawMode == DrawMode.Mesh) display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap), TextureGenerator.TextureFromColorMap(colorMap, mapWidht, mapHeight));
+        else if(drawMode == DrawMode.Mesh) display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap, meshHeightMultiplier, meshHeightCurve), TextureGenerator.TextureFromColorMap(colorMap, mapWidht, mapHeight));
     }
 
     void onValidate() {
