@@ -21,7 +21,7 @@ public static class MeshGenerator
         int vertexIndex = 0;
         for (int y = 0; y < height; y += meshSimplificationIncrement) {
             for (int x = 0; x < width; x += meshSimplificationIncrement) {
-                meshData.vertices[vertexIndex] = new Vector3(topLeftX + x, _heightCurve.Evaluate(heightMap[x,y]) * heightMultiplier, topLeftZ - y);
+                meshData.vertices[vertexIndex] = new Vector3(topLeftX + x, heightCurve.Evaluate(heightMap[x,y]) * heightMultiplier, topLeftZ - y);
                 meshData.uvs[vertexIndex] = new Vector2(x/(float)width, y/(float)height);
                 if (x < width -1 && y < height - 1) {
                     meshData.addTriangle(vertexIndex, vertexIndex + verticesPerLine + 1, vertexIndex + verticesPerLine);                    
